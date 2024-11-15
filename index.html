@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crush Tools</title>
+    <style>
+        /* Basic Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #FFE9D6;
+            color: #7B6079;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #DE8971;
+            margin-bottom: 20px;
+        }
+
+        .tool {
+            background-color: #A7D0CD;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 400px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool input, .tool button {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #7B6079;
+            width: 100%;
+        }
+
+        button {
+            background-color: #DE8971;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #B76E5F;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .tool {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Crush Tools</h1>
+
+    <!-- Crush Compatibility Test -->
+    <div class="tool" id="compatibility-test">
+        <h2>Crush Compatibility Test</h2>
+        <label for="name1">Your Name:</label>
+        <input type="text" id="name1">
+        <label for="name2">Partner's Name:</label>
+        <input type="text" id="name2">
+        <button onclick="startCompatibilityTest()">Start Test</button>
+        <div id="compatibility-result"></div>
+    </div>
+
+    <!-- Does My Crush Notice Me? -->
+    <div class="tool" id="crush-notice">
+        <h2>Does My Crush Notice Me?</h2>
+        <label><input type="checkbox"> Frequent eye contact</label><br>
+        <label><input type="checkbox"> Playful touches</label><br>
+        <label><input type="checkbox"> Engages in conversations</label><br>
+        <button onclick="calculateCrushAwareness()">Check Awareness</button>
+        <div id="crush-awareness-result"></div>
+    </div>
+
+    <!-- Profile of the Perfect Date -->
+    <div class="tool" id="perfect-date">
+        <h2>Profile of the Perfect Date</h2>
+        <input type="text" id="activity" placeholder="Preferred Activity">
+        <input type="text" id="location" placeholder="Ideal Location">
+        <button onclick="generatePerfectDate()">Generate Profile</button>
+        <div id="perfect-date-result"></div>
+    </div>
+
+    <!-- Crush Tracker -->
+    <div class="tool" id="crush-tracker">
+        <h2>Crush Tracker</h2>
+        <input type="text" id="moment" placeholder="Describe a Moment">
+        <button onclick="addCrushMoment()">Add Moment</button>
+        <div id="crush-moments"></div>
+    </div>
+
+    <!-- Rizz Message Generator -->
+    <div class="tool" id="rizz-generator">
+        <h2>Rizz Message Generator</h2>
+        <button onclick="generateRizzMessage()">Get a Rizz Message</button>
+        <div id="rizz-result"></div>
+    </div>
+
+    <!-- Fictional Scenario Generator -->
+    <div class="tool" id="scenario-generator">
+        <h2>Fictional Scenario Generator</h2>
+        <button onclick="generateScenario()">Get a Scenario</button>
+        <div id="scenario-result"></div>
+    </div>
+
+    <script>
+        // Compatibility Test Placeholder Function
+        function startCompatibilityTest() {
+            let score = Math.floor(Math.random() * 100);
+            document.getElementById("compatibility-result").innerText = 
+                `Your compatibility score is ${score}%!`;
+        }
+
+        // Crush Awareness Calculator
+        function calculateCrushAwareness() {
+            const checkboxes = document.querySelectorAll("#crush-notice input[type='checkbox']");
+            const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+            const awarenessScore = (checkedCount / checkboxes.length) * 100;
+            let summary = "Keep up the positive vibes!";
+            if (awarenessScore > 70) {
+                summary = "They definitely notice you!";
+            } else if (awarenessScore > 40) {
+                summary = "They might have some interest!";
+            }
+            document.getElementById("crush-awareness-result").innerText = 
+                `Crush Awareness Score: ${awarenessScore.toFixed(0)}% - ${summary}`;
+        }
+
+        // Perfect Date Generator
+        function generatePerfectDate() {
+            const activity = document.getElementById("activity").value;
+            const location = document.getElementById("location").value;
+            document.getElementById("perfect-date-result").innerText = 
+                `Your Perfect Date: ${activity} at ${location}. Vibe Rating: 🌟🌟🌟🌟🌟`;
+        }
+
+        // Crush Tracker
+        const crushMoments = [];
+        function addCrushMoment() {
+            const moment = document.getElementById("moment").value;
+            crushMoments.push(moment);
+            document.getElementById("crush-moments").innerText = crushMoments.join(", ");
+            document.getElementById("moment").value = ""; // Clear input
+        }
+
+        // Rizz Message Generator
+        const rizzMessages = [
+            "Are you a magician? Because whenever I look at you, everyone else disappears.",
+            "Is your name Google? Because you have everything I’m searching for.",
+            // Add more rizz messages here
+        ];
+        function generateRizzMessage() {
+            const randomIndex = Math.floor(Math.random() * rizzMessages.length);
+            document.getElementById("rizz-result").innerText = rizzMessages[randomIndex];
+        }
+
+        // Scenario Generator
+        const scenarios = [
+            "You both lock eyes across a crowded room and feel an undeniable chemistry.",
+            "It's a rainy day, and you accidentally bump into each other, sharing a cozy umbrella.",
+            // Add more scenarios here
+        ];
+        function generateScenario() {
+            const randomIndex = Math.floor(Math.random() * scenarios.length);
+            document.getElementById("scenario-result").innerText = scenarios[randomIndex];
+        }
+    </script>
+</body>
+</html>
